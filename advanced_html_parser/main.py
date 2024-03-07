@@ -1,11 +1,9 @@
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 
-html = urlopen("https://pythonscraping.com/pages/warandpeace.html")
+html = urlopen("https://trends.builtwith.com/websitelist/Responsive-Tables")
 parsed_html = BeautifulSoup(html.read(), "html.parser")
 
-nameList = parsed_html.findAll("span", {"class": "green"})
-for name in nameList:
-    print(name.get_text())
-
+for data in parsed_html.find('table', {"class": "table"}).tbody.tr:
+    print(data.get_text())
 
